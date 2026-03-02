@@ -1,4 +1,4 @@
-## **TP kubernetes-minikube par DJibril DAHOUB**
+## **TP kubernetes-minikube par Djibril DAHOUB**
 L'objet de ce TP est d'explorer dans un premiers temps l'installation des technologies **Dockers** et **kubernetes-minikube**. 
 
 #### Démarrage et vérification de Minikube
