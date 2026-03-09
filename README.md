@@ -32,5 +32,35 @@ L'objet de ce TP est d'explorer dans un premiers temps l'installation des techno
 `ls`
 `exit`
 
+#### Gestion et mise à jour du Déploiement (Scale & Rollout)
+`kubectl scale --replicas=2 deployment/myservice`
+`docker tag myservice:latest djibrildh/my-image:v2`
+`docker push djibrildh/my-image:v2`
+`kubectl set image deployments/myservice myservice=djibrildh/my-image:v2`
+`kubectl rollout status deployments/myservice`
+`kubectl rollout undo deployments/myservice`
+
+#### Exposition de l'application (Services)
+`kubectl expose deployment myservice --type=NodePort --port=8080`
+`minikube service myservice --url`
+`kubectl delete service myservice`
+`kubectl expose deployment myservice --type=LoadBalancer --port=8080`
+
+#### Déploiement via fichiers de configuration (YAML)
+`kubectl apply -f myservice-deployment.yml`
+`kubectl apply -f myservice-service.yml`
+
+#### Configuration de l'Ingress et routage
+`minikube addons enable ingress`
+`kubectl get pods -n ingress-nginx`
+`kubectl apply -f ingress.yml`
+`kubectl get ingress`
+`sudo nano /etc/hosts` *(Ajout de 127.0.0.1 myservice.info en fin de document)*
+`minikube tunnel`
+
+#### Ajout d'un deuxième service (V2)
+`kubectl apply -f myserviceV2-deployment.yml`
+`kubectl apply -f myserviceV2-service.yml`
+
 #### Lien de l'image publiée : 
 https://hub.docker.com/repository/docker/djibrildh/myservice
