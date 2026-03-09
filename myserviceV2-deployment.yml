@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myservicev2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myservicev2
+  template:
+    metadata:
+      labels:
+        app: myservicev2
+    spec:
+      containers:
+        - image: efrei/myservice:1
+          imagePullPolicy: IfNotPresent
+          name: myservicev2
+      restartPolicy: Always
